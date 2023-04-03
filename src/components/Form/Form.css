@@ -3,15 +3,89 @@
   justify-content: center;
 }
 
+.card_number {
+  display: flex;
+  position: absolute;
+  z-index: 1;
+  top: 150px;
+}
+
+.title {
+  font-size: 12px;
+}
+
+.card_dates {
+  display: flex;
+  align-items: center;
+  margin: 15px;
+}
+
+.form_input {
+  width: 250px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+#form_input_expiry_date,
+#form_input_year_date {
+  width: 55px;
+  padding: 12px;
+}
+
+.form_input_dates {
+  width: 100px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
 .submit_btn {
   cursor: pointer;
+  width: 300px;
+  padding: 15px;
+  border-radius: 5px;
+  border: none;
+  background-color: hsl(278, 68%, 11%);
+  color: hsl(0, 0%, 100%);
+  font-size: 18px;
+  margin: 10px;
+}
+
+@media screen and (min-width: 376px) {
+  .background_img {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 375px) {
+  .background_img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: -2;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+  }
   .form {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 300px;
   }
 }
