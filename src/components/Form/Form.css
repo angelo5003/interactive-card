@@ -1,0 +1,17 @@
+.form_container {
+  display: flex;
+  justify-content: center;
+}
+
+.submit_btn {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 375px) {
+  .form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
