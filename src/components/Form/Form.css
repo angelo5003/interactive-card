@@ -14,6 +14,12 @@
   font-size: 12px;
 }
 
+.card_owner {
+  position: absolute;
+  top: 40px;
+  z-index: 2;
+}
+
 .card_dates {
   display: flex;
   align-items: center;

@@ -5,17 +5,22 @@ import "./Form.css";
 
 const Form = () => {
   const [form, setForm] = useState({
-    username: "",
     cardnumber: 0,
     expdate: 0,
     cardyear: 0,
     cvc: 0,
   });
 
+  const [user, setUser] = useState({
+    username: "",
+  });
+
   const handleChange = (e) => {
     const { name, value } = e.target; // destructure the name and value property from the e.target object.
 
-    setForm({ ...form, [name]: value }); // setForm({ ...form, [name]: value }); is updating the form state with the new value of the input field. The { ...form } part is creating a copy of the current state of form (object), and the [name]: value part is updating the property with the same name as the input field (like "username" or "cardnumber") to the new value.
+    setUser({ ...user, [name]: value });
+
+    setForm({ ...form, [name]: +value }); //  is updating the form state with the new value of the input field. The { ...form } part is creating a copy of the current state of form (object), and the [name]: value part is updating the property with the same name as the input field (like "username" or "cardnumber") to the new value. The + sign for the value is turning a string value to a number
   };
 
   const handleSubmit = (event) => {
@@ -34,6 +39,7 @@ const Form = () => {
     <div className="form_container">
       <img src={mobileBackground} alt="background" className="background_img" />
       <img src={cardFront} alt="card-front" className="front_card" />
+      <p className="card_owner">{user.username}</p>
       <p className="card_number">{form.cardnumber}</p>
       <form className="form" onSubmit={handleSubmit}>
         <label className="title">CARDHOLDER NAME</label>
@@ -41,9 +47,10 @@ const Form = () => {
           type="text"
           placeholder="e.g. Jane Appleseed"
           name="username"
-          value={form.username}
+          value={user.username}
           onChange={handleChange}
           className="form_input"
+          required
         />
 
         <label className="title">CARD NUMBER</label>
