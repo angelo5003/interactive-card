@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import mobileBackground from "../assets/images/bg-main-mobile.png";
-import cardFront from "../assets/images/bg-card-front.png";
 import "./Form.css";
 
 const Form = () => {
@@ -12,7 +10,7 @@ const Form = () => {
   });
 
   const [user, setUser] = useState({
-    username: "",
+    username: "Jane Doe",
   });
 
   const handleChange = (e) => {
@@ -25,8 +23,10 @@ const Form = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setForm({
+    setUser({
       username: "",
+    });
+    setForm({
       cardnumber: 0,
       expdate: 0,
       cardyear: 0,
@@ -37,17 +37,27 @@ const Form = () => {
 
   return (
     <div className="form_container">
-      <img src={mobileBackground} alt="background" className="background_img" />
-      <img src={cardFront} alt="card-front" className="front_card" />
-      <p className="card_owner">{user.username}</p>
-      <p className="card_number">{form.cardnumber}</p>
+      <div className="background_container"></div>
+      <div className="card_back_container">
+        <p className="card_cvc">{form.cvc}</p>
+      </div>
+      <div className="card_front_container">
+        <div className="card_front_inner_container">
+          <p className="card_number">{form.cardnumber}</p>
+          <div className="card_dates_inner_container">
+            <p className="card_owner">{user.username}</p>
+            <p className="card_exp_date">{form.expdate}</p>
+            <p className="card_card_year">{form.cardyear}</p>
+          </div>
+        </div>
+      </div>
       <form className="form" onSubmit={handleSubmit}>
         <label className="title">CARDHOLDER NAME</label>
         <input
           type="text"
           placeholder="e.g. Jane Appleseed"
           name="username"
-          value={user.username}
+          value={user.username === "Jane Doe" ? "" : user.username} // compare if the state is equal to the default value, if it is change it to an empty string and show the new typed value
           onChange={handleChange}
           className="form_input"
           required
@@ -61,6 +71,7 @@ const Form = () => {
           value={form.cardnumber}
           onChange={handleChange}
           className="form_input"
+          required
         />
 
         <div className="card_dates">
@@ -74,6 +85,7 @@ const Form = () => {
               onChange={handleChange}
               className="form_input_dates"
               id="form_input_expiry_date"
+              required
             />
           </label>
 
@@ -87,6 +99,7 @@ const Form = () => {
               onChange={handleChange}
               className="form_input_dates"
               id="form_input_year_date"
+              required
             />
           </label>
 
@@ -99,6 +112,7 @@ const Form = () => {
               value={form.cvc}
               onChange={handleChange}
               className="form_input_dates"
+              required
             />
           </label>
         </div>
