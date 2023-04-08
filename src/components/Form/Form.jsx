@@ -3,14 +3,14 @@ import "./Form.css";
 
 const Form = () => {
   const [form, setForm] = useState({
-    cardnumber: 0,
-    expdate: 0,
-    cardyear: 0,
-    cvc: 0,
+    cardnumber: "0000 0000 0000 0000",
+    expdate: "",
+    cardyear: "00/00",
+    cvc: "123",
   });
 
   const [user, setUser] = useState({
-    username: "Jane Doe",
+    username: "Jane Appleseed",
   });
 
   const handleChange = (e) => {
@@ -24,13 +24,13 @@ const Form = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     setUser({
-      username: "",
+      username: "Jane Appleseed",
     });
     setForm({
-      cardnumber: 0,
-      expdate: 0,
-      cardyear: 0,
-      cvc: 0,
+      cardnumber: "0000 0000 0000 0000",
+      expdate: "",
+      cardyear: "00/00",
+      cvc: "123",
     });
     console.log(`your form has been submitted`);
   };
@@ -42,6 +42,9 @@ const Form = () => {
         <p className="card_cvc">{form.cvc}</p>
       </div>
       <div className="card_front_container">
+        <div className="card_brand"></div>
+        <div className="card_small_brand"></div>
+
         <div className="card_front_inner_container">
           <p className="card_number">{form.cardnumber}</p>
           <div className="card_dates_inner_container">
@@ -57,7 +60,7 @@ const Form = () => {
           type="text"
           placeholder="e.g. Jane Appleseed"
           name="username"
-          value={user.username === "Jane Doe" ? "" : user.username} // compare if the state is equal to the default value, if it is change it to an empty string and show the new typed value
+          value={user.username === "Jane Appleseed" ? "" : user.username} // compare if the state is equal to the default value, if it is change it to an empty string and show the new typed value
           onChange={handleChange}
           className="form_input"
           required
@@ -65,10 +68,12 @@ const Form = () => {
 
         <label className="title">CARD NUMBER</label>
         <input
-          type="number"
+          type="text"
           placeholder="e.g. 1234 5678 9123 0000"
           name="cardnumber"
-          value={form.cardnumber}
+          value={
+            form.cardnumber === "0000 0000 0000 0000" ? "" : form.cardnumber
+          }
           onChange={handleChange}
           className="form_input"
           required
@@ -78,7 +83,7 @@ const Form = () => {
           <label className="title">
             EXP.DATE
             <input
-              type="number"
+              type="text"
               placeholder="MM"
               name="expdate"
               value={form.expdate}
@@ -92,10 +97,10 @@ const Form = () => {
           <label className="title">
             (MM/YY)
             <input
-              type="number"
+              type="text"
               placeholder="YY"
               name="cardyear"
-              value={form.cardyear}
+              value={form.cardyear === "00/00" ? "" : form.cardyear}
               onChange={handleChange}
               className="form_input_dates"
               id="form_input_year_date"
@@ -106,10 +111,10 @@ const Form = () => {
           <label className="title">
             CVC
             <input
-              type="number"
+              type="text"
               placeholder="e.g. 123"
               name="cvc"
-              value={form.cvc}
+              value={form.cvc === "123" ? "" : form.cvc}
               onChange={handleChange}
               className="form_input_dates"
               required
