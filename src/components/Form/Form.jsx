@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Form.css";
+import SuccessMessage from "../SuccesMessage/SuccessMessage";
 
 const Form = () => {
   const [form, setForm] = useState({
@@ -9,9 +10,15 @@ const Form = () => {
     cvc: "123",
   });
 
+  const [successMessage, setSuccesMessage] = useState(false);
+
   const [user, setUser] = useState({
     username: "Jane Appleseed",
   });
+
+  const showSuccesMessage = () => {
+    setSuccesMessage(!successMessage);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target; // destructure the name and value property from the e.target object.
@@ -32,6 +39,7 @@ const Form = () => {
       cardyear: "00/00",
       cvc: "123",
     });
+    showSuccesMessage();
     console.log(`your form has been submitted`);
   };
 
@@ -44,7 +52,6 @@ const Form = () => {
       <div className="card_front_container">
         <div className="card_brand"></div>
         <div className="card_small_brand"></div>
-
         <div className="card_front_inner_container">
           <p className="card_number">{form.cardnumber}</p>
           <div className="card_dates_inner_container">
@@ -55,75 +62,81 @@ const Form = () => {
         </div>
       </div>
       <form className="form" onSubmit={handleSubmit}>
-        <label className="title">CARDHOLDER NAME</label>
-        <input
-          type="text"
-          placeholder="e.g. Jane Appleseed"
-          name="username"
-          value={user.username === "Jane Appleseed" ? "" : user.username} // compare if the state is equal to the default value, if it is change it to an empty string and show the new typed value
-          onChange={handleChange}
-          className="form_input"
-          required
-        />
-
-        <label className="title">CARD NUMBER</label>
-        <input
-          type="text"
-          placeholder="e.g. 1234 5678 9123 0000"
-          name="cardnumber"
-          value={
-            form.cardnumber === "0000 0000 0000 0000" ? "" : form.cardnumber
-          }
-          onChange={handleChange}
-          className="form_input"
-          required
-        />
-
-        <div className="card_dates">
-          <label className="title">
-            EXP.DATE
+        {successMessage ? (
+          <SuccessMessage />
+        ) : (
+          <>
+            <label className="title">CARDHOLDER NAME</label>
             <input
               type="text"
-              placeholder="MM"
-              name="expdate"
-              value={form.expdate}
+              placeholder="e.g. Jane Appleseed"
+              name="username"
+              value={user.username === "Jane Appleseed" ? "" : user.username} // compare if the state is equal to the default value, if it is change it to an empty string and show the new typed value
               onChange={handleChange}
-              className="form_input_dates"
-              id="form_input_expiry_date"
+              className="form_input"
               required
             />
-          </label>
 
-          <label className="title">
-            (MM/YY)
+            <label className="title">CARD NUMBER</label>
             <input
               type="text"
-              placeholder="YY"
-              name="cardyear"
-              value={form.cardyear === "00/00" ? "" : form.cardyear}
+              placeholder="e.g. 1234 5678 9123 0000"
+              name="cardnumber"
+              value={
+                form.cardnumber === "0000 0000 0000 0000" ? "" : form.cardnumber
+              }
               onChange={handleChange}
-              className="form_input_dates"
-              id="form_input_year_date"
+              className="form_input"
               required
             />
-          </label>
 
-          <label className="title">
-            CVC
-            <input
-              type="text"
-              placeholder="e.g. 123"
-              name="cvc"
-              value={form.cvc === "123" ? "" : form.cvc}
-              onChange={handleChange}
-              className="form_input_dates"
-              required
-            />
-          </label>
-        </div>
-        <button type="submit" className="submit_btn">
-          Confirm
-        </button>
+            <div className="card_dates">
+              <label className="title">
+                EXP.DATE
+                <input
+                  type="text"
+                  placeholder="MM"
+                  name="expdate"
+                  value={form.expdate}
+                  onChange={handleChange}
+                  className="form_input_dates"
+                  id="form_input_expiry_date"
+                  required
+                />
+              </label>
+
+              <label className="title">
+                (MM/YY)
+                <input
+                  type="text"
+                  placeholder="YY"
+                  name="cardyear"
+                  value={form.cardyear === "00/00" ? "" : form.cardyear}
+                  onChange={handleChange}
+                  className="form_input_dates"
+                  id="form_input_year_date"
+                  required
+                />
+              </label>
+
+              <label className="title">
+                CVC
+                <input
+                  type="text"
+                  placeholder="e.g. 123"
+                  name="cvc"
+                  value={form.cvc === "123" ? "" : form.cvc}
+                  onChange={handleChange}
+                  className="form_input_dates"
+                  required
+                />
+              </label>
+            </div>
+            <button type="submit" className="submit_btn">
+              Confirm
+            </button>
+          </>
+        )}
       </form>
     </div>
   );
