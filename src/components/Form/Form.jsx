@@ -30,15 +30,6 @@ const Form = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setUser({
-      username: "Jane Appleseed",
-    });
-    // setForm({
-    //   cardnumber: "0000 0000 0000 0000",
-    //   expdate: "",
-    //   cardyear: "00/00",
-    //   cvc: "123",
-    // });
     showSuccesMessage();
     console.log(`your form has been submitted`);
   };
@@ -63,7 +54,7 @@ const Form = () => {
       </div>
       <form className="form" onSubmit={handleSubmit}>
         {successMessage ? (
-          <SuccessMessage setForm={setForm} />
+          <SuccessMessage setForm={setForm} setUser={setUser} />
         ) : (
           <>
             <label className="title">CARDHOLDER NAME</label>

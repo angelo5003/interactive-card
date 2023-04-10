@@ -2,8 +2,11 @@ import React from "react";
 import "./SuccessStyles.css";
 import succesLogo from "../assets/images/icon-complete.svg";
 
-const SuccessMessage = ({ setForm }) => {
+const SuccessMessage = ({ setForm, setUser }) => {
   const handleClearInput = () => {
+    setUser({
+      username: "Jane Appleseed",
+    });
     setForm({
       cardnumber: "0000 0000 0000 0000",
       expdate: "",
