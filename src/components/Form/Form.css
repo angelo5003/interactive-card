@@ -4,6 +4,10 @@
   color: hsl(0, 0%, 100%);
 }
 
+.error {
+  background-color: red;
+}
+
 .background_container {
   background: rgb(35, 14, 55);
   background: linear-gradient(0deg, rgba(35, 14, 55, 1) 0%);
@@ -109,6 +113,14 @@
 #form_input_year_date {
   width: 55px;
   padding: 12px;
+}
+
+#cardholder_name,
+#card_number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .form_input_dates {
